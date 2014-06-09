@@ -61,7 +61,8 @@ public class ClassOptDialog extends JPanel {
         final String classesCommand = "classes";
         final String activeclassesCommand = " activeclasses";
         final String componentsCommand = "components";
-        final String yncCommand = "ync";
+        final String collaborationsCommand = "collaborations";
+        final String yncCommand = "yesno";
 
         radioButtons[0] = new JRadioButton("Classes");
         radioButtons[0].setActionCommand(classesCommand);
@@ -79,7 +80,7 @@ public class ClassOptDialog extends JPanel {
         radioButtons[4].setActionCommand(yncCommand);
         
         radioButtons[5] = new JRadioButton("Collaborations");
-        radioButtons[5].setActionCommand(yncCommand);
+        radioButtons[5].setActionCommand(collaborationsCommand);
         
         radioButtons[6] = new JRadioButton("Packages");
         radioButtons[6].setActionCommand(yncCommand);
