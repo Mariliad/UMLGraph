@@ -38,6 +38,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     // JTabbedPane tabButtons;
     EmptyBorder border5 = new EmptyBorder(1, 1, 5, 1);
     JTextArea textArea;
+    String docName = "Document 1";
     JLabel umlimage = new JLabel(new ImageIcon("W:\\GUI\\FlowLayoutDemo\\src\\mary\\Person.png"));
     BufferedReader br;
     String currentFileBeingEdited = null;
@@ -128,8 +129,11 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
         JScrollPane paneJ = new JScrollPane(textArea);
         paneltext.add(paneJ);
         textArea.setTabSize(11);
-        textArea.setRows(35);
+        textArea.setRows(34);
         textArea.setColumns(40);
+        
+        JLabel lblDocument = new JLabel(docName);
+        paneJ.setColumnHeaderView(lblDocument);
         mainpanel.add(paneltext, BorderLayout.WEST);
  
         JPanel panelimage = new JPanel();
@@ -194,6 +198,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     		int returnVal = fc.showOpenDialog(UMLGraphGUI.this);
     		if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
+                docName = file.getName();
                 //This is where the application would open the file.
                 currentFileBeingEdited = file.getAbsolutePath();
                 try {
@@ -235,6 +240,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     	    		 BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
     	    		 out.write(textsave);
     	    		 out.close();
+    	    		 docName = fileName.getName();
     	    	 } catch(Exception ee) {
     	    		 System.err.println("Error: " + ee.getMessage());
     	    	 }
