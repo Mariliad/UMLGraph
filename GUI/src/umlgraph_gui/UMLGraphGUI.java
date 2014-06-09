@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
@@ -38,8 +39,9 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     // JTabbedPane tabButtons;
     EmptyBorder border5 = new EmptyBorder(1, 1, 5, 1);
     JTextArea textArea;
-    String docName = "Document 1";
+    static String docName = "Document 1";
     JLabel umlimage = new JLabel(new ImageIcon("W:\\GUI\\FlowLayoutDemo\\src\\mary\\Person.png"));
+    JLabel lblDocument;
     BufferedReader br;
     String currentFileBeingEdited = null;
     ClassOptDialog classDialog;
@@ -115,14 +117,6 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
         menuBar.add(helpmenu);
         setJMenuBar(menuBar);
         
-        /**Panel panelbuttons = new Panel();
-        FlowLayout fl_panelbuttons = (FlowLayout) panelbuttons.getLayout();
-        fl_panelbuttons.setAlignment(FlowLayout.LEFT);
-        fl_panelbuttons.setVgap(10);
-        fl_panelbuttons.setHgap(10);
-        mainpanel.add(panelbuttons, BorderLayout.NORTH);
-        */
-        
         JPanel paneltext = new JPanel();
         textArea = new JTextArea();
         textArea.setToolTipText("Your code goes here...");
@@ -132,7 +126,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
         textArea.setRows(34);
         textArea.setColumns(40);
         
-        JLabel lblDocument = new JLabel(docName);
+        lblDocument = new JLabel(docName);
         paneJ.setColumnHeaderView(lblDocument);
         mainpanel.add(paneltext, BorderLayout.WEST);
  
@@ -199,6 +193,11 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     		if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 docName = file.getName();
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                    	lblDocument.setText(docName);
+                    }
+                });
                 //This is where the application would open the file.
                 currentFileBeingEdited = file.getAbsolutePath();
                 try {
@@ -241,6 +240,11 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     	    		 out.write(textsave);
     	    		 out.close();
     	    		 docName = fileName.getName();
+    	    		 SwingUtilities.invokeLater(new Runnable() {
+    	                    public void run() {
+    	                    	lblDocument.setText(docName);
+    	                    }
+    	                });
     	    	 } catch(Exception ee) {
     	    		 System.err.println("Error: " + ee.getMessage());
     	    	 }
@@ -306,4 +310,5 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     	}
     	*/
     }
+   
 }
