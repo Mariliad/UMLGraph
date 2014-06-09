@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
@@ -147,6 +148,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
         convertpanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         
         JButton btnConvertToUml = new JButton("Convert to UML Diagram");
+        btnConvertToUml.addActionListener(this);
         convertpanel.add(btnConvertToUml);
         
         setVisible(true);
@@ -303,12 +305,29 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     		}
     		
     		textArea.insert(textmodel, textArea.getCaretPosition());
-    		
-    	} 
-    	/**else {
-    		textArea.append("\n");
     	}
-    	*/
+    	
+    	if (command.equals("Convert to UML Diagram")) {
+    		JFrame frameDiagram = new JFrame("Convert to UML Diagram");
+    		frameDiagram.setBounds(320, 250, 200, 300);
+    		frameDiagram.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    		
+    		JPanel panelC = new JPanel();
+    		panelC.setBorder(new EmptyBorder(10, 10, 10, 10));
+    		panelC.setLayout(new BorderLayout(5, 5));
+    		JLabel lblChooseTheSource = new JLabel("Convert " + docName + " to UML diagram");
+    		lblChooseTheSource.setHorizontalAlignment(SwingConstants.CENTER);
+    		panelC.add(lblChooseTheSource, BorderLayout.NORTH);
+    		
+    		JButton btnOk = new JButton("OK");
+    		panelC.add(btnOk, BorderLayout.SOUTH);
+            
+    		frameDiagram.add(panelC);
+    		
+    		frameDiagram.pack();
+    		frameDiagram.setVisible(true);    		
+    	}
+    	
     }
    
 }
