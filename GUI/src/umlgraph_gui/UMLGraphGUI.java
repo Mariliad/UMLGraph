@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -41,7 +42,7 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     EmptyBorder border5 = new EmptyBorder(1, 1, 5, 1);
     JTextArea textArea;
     static String docName = "Document 1";
-    JLabel umlimage = new JLabel(new ImageIcon("W:\\GUI\\FlowLayoutDemo\\src\\mary\\Person.png"));
+    JLabel umlimage = new JLabel(new ImageIcon("Person.png"));
     JLabel lblDocument;
     BufferedReader br;
     String currentFileBeingEdited = null;
@@ -319,8 +320,20 @@ public class UMLGraphGUI extends JFrame implements ActionListener {
     		lblChooseTheSource.setHorizontalAlignment(SwingConstants.CENTER);
     		panelC.add(lblChooseTheSource, BorderLayout.NORTH);
     		
-    		JButton btnOk = new JButton("OK");
-    		panelC.add(btnOk, BorderLayout.SOUTH);
+    		String[] imageType = { "PNG", "SVG", "EMF", "GIF", "JPEG", "fig", "Framemaker", "Postscript"};
+    		JComboBox imageTypeList = new JComboBox(imageType);
+    		imageTypeList.setEditable(false);
+    		imageTypeList.setSelectedIndex(0);
+    		imageTypeList.addActionListener(this);
+            
+            panelC.add(imageTypeList, BorderLayout.CENTER);
+    		
+            JPanel panel_1 = new JPanel();
+            panelC.add(panel_1, BorderLayout.SOUTH);
+            panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
+            
+            JButton btnOk = new JButton("OK");
+            panel_1.add(btnOk);
             
     		frameDiagram.add(panelC);
     		

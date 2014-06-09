@@ -37,8 +37,6 @@ public class RelationshipDialog extends JPanel implements ActionListener {
 		String[] relName = { "Implementation", "Generalization", "Association", "Navigable association", 
 				"Aggregation", "Navigable aggregation", "Composition", "Navigable composition", "Dependency" };
 
-        //Create the combo box, select the item at index 4.
-        //Indices start at 0, so 4 specifies the pig.
         JComboBox relList = new JComboBox(relName);
         relList.setSelectedIndex(8);
         relList.addActionListener(this);
